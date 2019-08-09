@@ -1,0 +1,62 @@
+@import "_mixin";
+// variables
+
+$Playfair: 'Playfair Display', serif;
+$Roboto: 'Roboto', sans-serif;
+
+$gris: #CCC;
+//reset
+
+body *{
+    font-family: $Roboto;
+    color: $gris;
+    max-height: 999999px;
+}
+
+body, html {
+    margin:0;
+    padding:0;
+    font-size: 100%;
+    @media only screen and (max-width:960px){
+        font-size: 91.15%;
+    }
+    @media only screen and (max-width:465px){
+        font-size: 87.5%;
+    }
+}
+a img{border:none; outline: none}
+a{text-decoration:none; outline:0; border:none;}
+form{margin:0; padding:0}
+
+.cuerpo{
+    margin:0 auto;
+    width:1024px;
+    max-width: 100%;
+    position: relative;
+}
+img{
+	max-width: 100%;
+}
+
+
+.floati{float:left;}
+.floatd{float:right;}
+.separador{clear:both;height:0px; overflow:hidden}
+.separadorv{clear:both;height:10px; font-size:1px;}
+
+
+.noenpc{display: none;}
+@media only screen and (max-width:640px){
+	.noenpc{display: block;}
+	.noenmobile{display: none;}
+}
+
+a{
+    @include transition(color 500ms, background-color 500ms);
+}
+
+
+@import "layout";
+@import "home";
+
+
