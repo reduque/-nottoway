@@ -1,0 +1,267 @@
+.fondonegro{
+    background: #000;
+    height: 87px;
+}
+header{
+    background: #000;
+    height: 87px;
+    position: fixed;
+    z-index: 10000;
+    width:1280px;
+    max-width: 100%;
+    @include flexbox();
+    a.logo{
+        height: 100%;
+        width: 87px;
+        display: inline-block;
+        background: url(../img/logo.svg) no-repeat center center / 44px auto;
+        margin-left: 2.5rem;
+    }
+    nav{
+        @include flex(1);
+        ul{
+            @include ul_limpio();
+            @include flexbox();
+            @include justify-content(space-evenly);
+            a{
+                height: 87px;
+                line-height: 87px;
+                width: 100%;
+                display: block;
+                font-size: 1.625rem;
+                color: #fff;
+                &:hover{
+                    color: $gris_claro;
+                }
+            }
+        }
+        @media only screen and (max-width:900px){
+            display: none;
+        }
+    }
+}
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    100% {
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    }
+  }
+
+.s1{
+    background: url(../img/s1.jpg) no-repeat center center / auto 100%;
+    height: 700px;
+    @include flexbox();
+    @include align-items(center);
+    div{
+        width: 100%;
+        text-align: center;
+        h2{
+            font-size: 5.125rem;
+            color: #fff;
+
+        }
+        opacity: 0;
+	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        -webkit-animation: 2s ease-out 0s 1 slideInFromLeft;
+        animation: 2s ease-out 0s 1 slideInFromLeft;
+        -webkit-animation-fill-mode: forwards;
+    }
+    @media only screen and (max-width:900px){
+        height: 495px;
+        div h2{
+            font-size: 3.5rem;
+        }
+    }
+}
+.s2{
+    background: url(../img/s2.jpg) no-repeat center center;
+    height: 700px;
+    @include flexbox();
+    @include align-items(center);
+    div{
+        width: 100%;
+        text-align: center;
+        img{
+            width: 327px;
+            height: auto;
+        }
+        p{
+            font-size: 1.75rem;
+            color: #fff;
+            font-weight: 300;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+.s3{
+    background:url(../img/s3.jpg) no-repeat center 0;
+    height: 360px;
+}
+// --------------------
+div.bloques{
+    width: 50%;
+    img{width: 100%;}
+    &:first-child div{
+        padding: 4rem 4rem 2rem 5rem;
+        p{
+            font-size: 1.25rem;
+        }
+    }
+}
+.s4{
+    .bs4_1{
+        h2{
+            color: $marron;
+            font-size: 2.875rem;
+            line-height: 2.875rem;
+        }
+        h3{
+            color: $marron;
+            font-size: 1.8125rem;
+            margin-top: 3.5rem;
+            margin-bottom: 2rem;
+            font-family: $Roboto;
+        }
+    }
+}
+
+.s5{
+    background: url(../img/s5.jpg) no-repeat center center;
+    height: 700px;
+    @include flexbox();
+    @include align-items(center);
+    div{
+        width: 100%;
+        text-align: center;
+        h2{
+            font-size: 4rem;
+            color: #fff;
+            line-height: 4.875rem;
+            @media only screen and (max-width:1120px){
+                font-size: 3.2rem;
+                line-height: 3.9rem;
+            }
+            @media only screen and (max-width:900px){
+                font-size: 2.4rem;
+                line-height: 2.925rem;
+            }
+        }
+    }
+}
+
+.s6{
+    .bs6_1{
+        h2{
+            color: $marron;
+            font-size: 3.625rem;
+            line-height: 4.375rem;
+        }
+        h3{
+            color: $marron;
+            font-size: 1.8125rem;
+            margin-top: 3rem;
+            font-family: $Roboto;
+        }
+        h4{
+            color: $marron;
+            font-size: 1.1875rem;
+            font-weight: bold;
+            margin-top: 2.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .m1{width: 378px;}
+        .m2{width: 276px;}
+    }
+}
+.s8{
+    .bs8_1{
+        h2{
+            color: $marron;
+            font-size: 2.875rem;
+            line-height: 2.9375rem;
+        }
+        h3{
+            color: $marron;
+            font-size: 1.8125rem;
+            margin-top: 3rem;
+            font-family: $Roboto;
+        }
+        p.conlinea{
+            font-weight: normal;
+            &::before{
+                content: '';
+                width: 48px;
+                height: 2px;
+                background: $marron;
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+.s10{
+    .bs10_1{
+        h2{
+            color: $marron;
+            font-size: 2.875rem;
+            line-height: 2.9375rem;
+            margin-bottom: 4rem;
+        }
+        h3{
+            color: $marron;
+            font-size: 1.8125rem;
+            margin-top: 3rem;
+            font-family: $Roboto;
+        }
+        ul{
+            padding-left: 0;
+            li{
+                font-size: 1.25rem;
+            }
+        }
+        h4{
+            font-size: 1.25rem;
+            font-family: $Roboto;
+            font-weight: 300;
+            color: $marron;
+            margin-top: 4rem;
+        }
+    }
+}
+
+
+.s_bloques{
+    @include flexbox();
+    @media only screen and (max-width:1000px){
+        @include flex-wrap(wrap);
+        div.bloques{
+            width: 100%;
+        }
+    }
+}
+
+footer{
+    background: $marron;
+    padding: 3rem 3rem 1.5rem 3rem;
+    text-align: center;
+    h2{
+        color: #fff;
+        font-size: 3.5625rem;
+    }
+
+    .i_f{
+        width: 327px;
+        margin: 4rem auto;
+    }
+    .dir{
+        color: #fff;
+        font-size: 1.25rem;
+    }
+}
