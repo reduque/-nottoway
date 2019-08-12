@@ -7,6 +7,7 @@ $Roboto: 'Roboto', sans-serif;
 $gris: #58595b;
 $gris_claro: #999;
 $marron: #986a4c;
+$crema: #eae1db;
 //reset
 
 body *{
@@ -38,7 +39,7 @@ form{margin:0; padding:0}
     width:1280px;
     max-width: 100%;
     position: relative;
-    background: #eae1db;
+    background: $crema;
 }
 img{
     max-width: 100%;
@@ -47,8 +48,6 @@ img{
 
 
 .floati{float:left;}
-.floatd{float:right;}
-.separador{clear:both;height:0px; overflow:hidden}
 .separadorv{clear:both;height:10px; font-size:1px;}
 
 

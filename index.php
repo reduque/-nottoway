@@ -1,10 +1,20 @@
+<?php
+@session_start();
+if(empty($_SESSION['token'])) {
+    $token = md5(uniqid(rand(), TRUE));
+    $_SESSION['token'] = $token;
+}else{
+    $token = $_SESSION['token'];
+}
+
+?>
 <!doctype html>
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Nottoway Commons</title>
-    <meta name="viewport" content="width=640, initial-scale=1">
+    <meta name="viewport" content="width=640">
     <meta name="description" content="Nottoway Commons">
     <meta name="author" content="Cacao Digital">
 
@@ -24,15 +34,16 @@
 <body>
   <div class="cuerpo">
     <header>
-      <a href="" class="logo"></a>
+      <a href="" data-ira='.cuerpo' class="logo"></a>
       <nav>
+        <div class="menumovil"></div>
         <ul>
-          <li><a href="">Overview</a></li>
-          <li><a href="">Hotels</a></li>
-          <li><a href="">Residences</a></li>
-          <li><a href="">The Commons</a></li>
-          <li><a href="">Business</a></li>
-          <li><a href="">Contact Us</a></li>
+          <li><a href="" data-ira='.s2'>Overview</a></li>
+          <li><a href="" data-ira='.s4'>Hotels</a></li>
+          <li><a href="" data-ira='.s6'>Residences</a></li>
+          <li><a href="" data-ira='.s8'>The Commons</a></li>
+          <li><a href="" data-ira='.s10'>Business</a></li>
+          <li><a href="" data-ira='footer'>Contact Us</a></li>
         </ul>
       </nav>
     </header>
@@ -65,7 +76,7 @@
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s4_1.jpg"><img src="img/s4_2.jpg">
+            <img src="img/s4_1.jpg" class="oculto"><img src="img/s4_2.jpg" class="oculto">
         </div>
     </section>
 
@@ -91,7 +102,7 @@
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s6_1.jpg"><img src="img/s6_2.jpg"><img src="img/s6_3.jpg">
+            <img src="img/s6_1.jpg" class="oculto"><img src="img/s6_2.jpg" class="oculto"><img src="img/s6_3.jpg" class="oculto">
         </div>
     </section>
 
@@ -109,7 +120,7 @@
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s8_1.jpg"><img src="img/s8_2.jpg">
+            <img src="img/s8_1.jpg" class="oculto"><img src="img/s8_2.jpg" class="oculto">
         </div>
     </section>
 
@@ -143,16 +154,27 @@
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s10_1.jpg"><img src="img/s10_2.jpg">
+            <img src="img/s10_1.jpg" class="oculto"><img src="img/s10_2.jpg" class="oculto">
         </div>
     </section>
 
     <footer>
         <h2>Contact us today</h2>
-<p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.0570091545997!2d-66.84728178555177!3d10.496172267174977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a59ad9499f86b%3A0x472cdddf0c613d80!2sTequilibrio!5e0!3m2!1ses-419!2sve!4v1565393542188!5m2!1ses-419!2sve" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    
-
-</p>
+        <form action="?" onsubmit="return valida(this)">
+            <div class="f1">
+                <div class="formulario">
+                    <input type="hidden" name="token" value="<?php echo $token; ?>">
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" name="phone" placeholder="Phone number">
+                    <textarea name="comment" placeholder="Comment" required></textarea>
+                </div>
+                <div class="mapa">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.0570091545997!2d-66.84728178555177!3d10.496172267174977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a59ad9499f86b%3A0x472cdddf0c613d80!2sTequilibrio!5e0!3m2!1ses-419!2sve!4v1565393542188!5m2!1ses-419!2sve" width="100%" height="283" frameborder="0" style="border:0" allowfullscreen></iframe>    
+                </div>
+                <button class="boton">SEND MESSAGE</button>
+            </div>
+        </form>
 
         <img src="img/logo_slogan.svg" alt="Nottoway Commons" class="i_f">
         <div class="dir">Toll Free 1.800.809.6882 | info@nottowaycommons.com | Nottoway Commons, LLC | A Planned Community Development</div>
@@ -160,34 +182,63 @@
 
   </div>
 
+<script src="js/jquery-1.12.4.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/modernizr-3.5.0.min.js"></script>
 
 
+<script>
+var ancho=$('.banner_home2').width();
+var b_act=0;
 
-    <script src="js/jquery-1.12.4.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/modernizr-3.5.0.min.js"></script>
+$( document ).ready( function () {
+    $( window ).scroll( function () {
+        var scrollTop = $( window ).scrollTop();
+        winh = $( window ).height();
+        obj = $( '.pallax' );
+        mitop = obj.offset().top;
+        mialto = obj.height();
+        if ( ( winh + scrollTop ) > mitop && ( scrollTop - mialto ) < mitop ) {
+            aa = winh + mialto;
+            if ( aa == 0 ) aa = 1;
+            donde = ( mitop - scrollTop - winh ) * mialto / aa;
+            obj.css( "background-position", "center " + donde + "px" );
+        }
+        $('.oculto').each(function(){
+            if(scrollTop + winh > ($(this).offset().top + $(this).height()/1.1) ){ // 
+                $(this).removeClass('oculto');
+            }
+        })
+    });
+    $('header a').click(function(evento){
+        evento.preventDefault();
+        $('header nav ul').removeClass('activo');
+        $('html,body').animate({scrollTop:$($(this).data('ira')).offset().top - 87},1000, "easeOutQuad");
+    })
+    $('.menumovil').click(function(){
+        $('header nav ul').toggleClass('activo');
+    })
+})
 
-
-    <script>
-    var ancho=$('.banner_home2').width();
-    var b_act=0;
-
-	$( document ).ready( function () {
-		$( window ).scroll( function () {
-			var scrollTop = $( window ).scrollTop();
-			winh = $( window ).height();
-			obj = $( '.pallax' );
-			mitop = obj.offset().top;
-			mialto = obj.height();
-			if ( ( winh + scrollTop ) > mitop && ( scrollTop - mialto ) < mitop ) {
-				aa = winh + mialto;
-				if ( aa == 0 ) aa = 1;
-				donde = ( mitop - scrollTop - winh ) * mialto / aa;
-				obj.css( "background-position", "center " + donde + "px" );
-			}
-		} );
-	} )
-    </script>
+function valida(elFRM){
+    $.ajax({
+        data: $(elFRM).serialize(),
+        type: "POST",
+        dataType: "json",
+        url: "contacto.php",
+        success: function(data){
+            if(data.enviado=="si"){
+                alert('Thanks for writing, we will be contacting you soon');
+                elFRM.reset();
+            }else{
+                alert('Something went wrong, for security the page will be reloaded');
+                location.reload();
+            }
+        }
+    });
+    return false;
+}
+</script>
 
     
 </body>

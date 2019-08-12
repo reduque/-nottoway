@@ -19,6 +19,13 @@ header{
     }
     nav{
         @include flex(1);
+        .menumovil{
+            background: url(../img/hamburguesa.svg) no-repeat;
+            background-size: auto 100%;
+            background-position: right 2.5rem center;
+            height: 87px;
+            display: none;
+        }
         ul{
             @include ul_limpio();
             @include flexbox();
@@ -30,17 +37,40 @@ header{
                 display: block;
                 font-size: 1.625rem;
                 color: #fff;
-                &:hover{
+                &:hover, &:active{
                     color: $gris_claro;
                 }
             }
         }
         @media only screen and (max-width:900px){
-            display: none;
+            position: relative;
+            cursor: pointer;
+            .menumovil{
+                display: block;
+            }
+            ul{
+                position: absolute;
+                top: 86px;
+                right: 0;
+                background: #000;
+                display: none;
+                padding: 20px 0;
+                a{
+                    height: 50px;
+                    line-height: 50px;
+                    text-align: center;
+                    width: 50vw;
+                    font-size: 2rem;
+                }
+
+                &.activo{
+                    display: block;
+                }
+            }
         }
     }
 }
-@keyframes slideInFromLeft {
+@keyframes mostrar {
     0% {
         opacity: 0;
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -66,8 +96,8 @@ header{
         }
         opacity: 0;
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-        -webkit-animation: 2s ease-out 0s 1 slideInFromLeft;
-        animation: 2s ease-out 0s 1 slideInFromLeft;
+        -webkit-animation: 2s ease-out 0s 1 mostrar;
+        animation: 2s ease-out 0s 1 mostrar;
         -webkit-animation-fill-mode: forwards;
     }
     @media only screen and (max-width:900px){
@@ -103,7 +133,7 @@ header{
     background:url(../img/s3.jpg) no-repeat center 0;
     height: 360px;
 }
-// --------------------
+// ------------------------------------------------------------------------------
 div.bloques{
     width: 50%;
     img{width: 100%;}
@@ -111,7 +141,23 @@ div.bloques{
         padding: 4rem 4rem 2rem 5rem;
         p{
             font-size: 1.25rem;
+            @media only screen and (max-width:700px){
+                font-size: 1.7rem;
+            }
         }
+    }
+    &:last-child img{
+        visibility: visible;
+        opacity: 1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+        transition: visibility 0s, opacity 1s linear;
+        &.oculto{
+            visibility: hidden;
+            opacity: 0;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            
+        }
+
     }
 }
 .s4{
@@ -224,6 +270,9 @@ div.bloques{
             padding-left: 0;
             li{
                 font-size: 1.25rem;
+                @media only screen and (max-width:700px){
+                    font-size: 1.7rem;
+                }
             }
         }
         h4{
@@ -254,11 +303,69 @@ footer{
     h2{
         color: #fff;
         font-size: 3.5625rem;
+        margin-bottom: 3rem;
     }
+    .f1{
+        @include dispaly-grid();
+        grid-template-columns: repeat(2, 1fr);
 
+        grid-template-areas: 
+            "formulario mapa"
+            "boton boton";
+        .formulario{
+            grid-area: formulario;
+        }
+        .mapa{
+            grid-area: mapa;
+        }
+        .boton{
+            grid-area: boton;
+            background: #000;
+            color: #fff;
+            font-size: 1.875rem;
+            border: none;
+            outline: none;
+            width: 100%;
+            padding: 5px 0;
+            font-weight: 300;
+            cursor: pointer;
+        }
+        input, textarea{
+            border: none;
+            outline: none;
+            background: $crema;
+            @extend %box-sizing;
+            width: 99%;
+            width: calc(100% - 18px);
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+        }
+        input{
+            height: 47px;
+            line-height: 47px;
+            padding: 0 10px;
+        }
+        textarea{
+            padding: 10px;
+            height: 106px;
+        }
+        @media only screen and (max-width:800px){
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-areas: 
+                "formulario"
+                "boton"
+                "mapa";
+            input, textarea{
+                width: 100%;
+            }
+            .mapa{
+                margin-top: 12px;
+            }
+        }
+    }
     .i_f{
         width: 327px;
-        margin: 4rem auto;
+        margin: 4rem auto 3rem auto;
     }
     .dir{
         color: #fff;
