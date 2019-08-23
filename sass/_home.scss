@@ -10,6 +10,7 @@ header{
     width:1280px;
     max-width: 100%;
     @include flexbox();
+//display: none;
     a.logo{
         height: 100%;
         width: 87px;
@@ -21,7 +22,7 @@ header{
         @include flex(1);
         .menumovil{
             background: url(../img/hamburguesa.svg) no-repeat;
-            background-size: auto 100%;
+            background-size: auto 30px;
             background-position: right 2.5rem center;
             height: 87px;
             display: none;
@@ -79,7 +80,7 @@ header{
         opacity: 1;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     }
-  }
+}
 
 .s1{
     background: url(../img/s1.jpg) no-repeat center center / auto 100%;
@@ -92,7 +93,7 @@ header{
         h2{
             font-size: 5.125rem;
             color: #fff;
-
+            text-shadow:  2px 2px 2px #333;
         }
         opacity: 0;
 	    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -128,10 +129,6 @@ header{
             margin-right: auto;
         }
     }
-}
-.s3{
-    background:url(../img/s3.jpg) no-repeat center 0;
-    height: 360px;
 }
 // ------------------------------------------------------------------------------
 div.bloques{
@@ -370,5 +367,43 @@ footer{
     .dir{
         color: #fff;
         font-size: 1.25rem;
+    }
+}
+@keyframes titilar {
+    0% {
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(500%);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0,0,0,0.8);
+    text-align: center;
+    z-index: 10001;
+    display: none;
+    @include justify-content(space-evenly);
+
+    img{
+        -webkit-animation-name: titilar;
+        animation-name: titilar;
+        -webkit-animation-duration: 2s;
+        animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        width: 40px;
+        height: auto;
+    }
+    &.activo{
+        @include flexbox();
     }
 }

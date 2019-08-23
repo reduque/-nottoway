@@ -56,15 +56,15 @@ if(empty($_SESSION['token'])) {
       </div>
     </section>
 
-    <section class="s2">
+    <section class="s2 parallax">
       <div>
         <img src="img/logo_slogan.svg" alt="Nottoway Commons">
-        <p>Strategically located outside Fort Pickett, 45 minutes away from Richmond, Virginia and 3 hours from Washington, D.C. Nottoway Commons has been carefully planned to serve the diverse needs of trainees, instructors and private contractors who train and work at the Foreign Affairs Security Training Center (FASTC) in Nottoway County year-round.</p>
-        <p>Our installations and facilities also serve the needs of other important communities at Fort Pickett, the State Police, VCU, Nottoway County, the Town of Nottoway and visitors who want to be part of this new opportunity.</p>
+        <p>Strategically located outside Fort Pickett, 45 minutes away from Richmond, Virginia and 3 hours from Washington D.C., Nottoway Commons has been carefully planned to serve the diverse needs of trainees, instructors and private contractors who train and work at the Foreign Affairs Security Training Center (FASTC) in Nottoway County year-round.</p>
+        <p>Our installations and facilities also serve the needs of other important communities at Fort Pickett, such as the State Police, VCU, Nottoway County, the Town of Nottoway and visitors who want to be part of this new opportunity.</p>
       </div>
     </section>
 
-    <div class="s3 pallax"></div>
+    <img src="img/s3.jpg">
 
     <section class="s4 s_bloques">
         <div class="bloques">
@@ -76,11 +76,11 @@ if(empty($_SESSION['token'])) {
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s4_1.jpg" class="oculto"><img src="img/s4_2.jpg" class="oculto">
+            <img src="img/s4_1.jpg" ><img src="img/s4_2.jpg">
         </div>
     </section>
 
-    <section class="s5">
+    <section class="s5 parallax">
         <div>
             <h2>At Nottoway Commons<br>there is no need to commute<br>or travel distances to enjoy and rest<br>in a quality atmosphere,<br>all in one place.</h2>
         </div>
@@ -102,7 +102,7 @@ if(empty($_SESSION['token'])) {
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s6_1.jpg" class="oculto"><img src="img/s6_2.jpg" class="oculto"><img src="img/s6_3.jpg" class="oculto">
+            <img src="img/s6_1.jpg" class="noenmobile"><img src="img/s6_2.jpg"><img src="img/s6_3.jpg">
         </div>
     </section>
 
@@ -111,20 +111,20 @@ if(empty($_SESSION['token'])) {
     <section class="s8 s_bloques">
         <div class="bloques">
             <div class="bs8_1">
-                <h2>LET’S MEET AT THE COMMON A PLACE TO SHOP & ENJOY</h2>
+                <h2>LET’S MEET AT THE COMMON, A PLACE TO SHOP & ENJOY</h2>
                 <h3>The Commons</h3>
                 <p>Nottoway Commons is a great space of convergence for shopping, dining and enjoyment, harboring a variety of options in one common place. Our Commons stand in a contemporary, open atmosphere where buildings blend naturally into the landscape.</p>
                 <p>We offer an array of options for families and business travelers that complement what Blackstone has to offer today.  </p>
-                <p>It is a common point of encounter where they will enjoy the comforts and pleasures of various great eats, from tasty fast food options or sit-down dining, bars, coffee shops, retail shops and much more, all in one beautiful setting and close to the town center.</p>
+                <p>It is a common point of encounter where they will enjoy the comforts and pleasures of various great eats. From tasty fast food options or sit-down dining, bars, coffee shops, retail shops and much more, all in one beautiful setting and close to the town center.</p>
                 <p class="conlinea">Over 88,000 SQ FT<br>Shops, Restaurants & more</p>
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s8_1.jpg" class="oculto"><img src="img/s8_2.jpg" class="oculto">
+            <img src="img/s8_1.jpg"><img src="img/s8_2.jpg">
         </div>
     </section>
 
-    <img src="img/s9.jpg">
+    <img src="img/s9.jpg" class="noenmobile">
 
     <section class="s10 s_bloques">
         <div class="bloques">
@@ -138,7 +138,7 @@ if(empty($_SESSION['token'])) {
                         <b>Hospitality services:</b> 402 hotel keys/213,000 + sq. ft. will serve hotel guests and visitors.
                     </li>
                     <li>
-                        <b>Commercial:</b> over 57,000 sq. ft. will cater to restaurants, fast food franchises and dining brands.
+                        <b>Commercial:</b> Over 57,000 sq. ft. will cater to restaurants, fast food franchises and dining brands.
                     </li>
                     <li>
                         <b>Retail:</b> Over 30,000 sq. ft. of available space.
@@ -154,7 +154,7 @@ if(empty($_SESSION['token'])) {
             </div>
         </div>
         <div class="bloques">
-            <img src="img/s10_1.jpg" class="oculto"><img src="img/s10_2.jpg" class="oculto">
+            <img src="img/s10_1.jpg"><img src="img/s10_2.jpg">
         </div>
     </section>
 
@@ -181,6 +181,10 @@ if(empty($_SESSION['token'])) {
     </footer>
 
   </div>
+  <div class="loading">
+      <img src="img/logo.svg">
+  </div>
+
 
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -195,18 +199,16 @@ $( document ).ready( function () {
     $( window ).scroll( function () {
         var scrollTop = $( window ).scrollTop();
         winh = $( window ).height();
-        obj = $( '.pallax' );
-        mitop = obj.offset().top;
-        mialto = obj.height();
-        if ( ( winh + scrollTop ) > mitop && ( scrollTop - mialto ) < mitop ) {
-            aa = winh + mialto;
-            if ( aa == 0 ) aa = 1;
-            donde = ( mitop - scrollTop - winh ) * mialto / aa;
-            obj.css( "background-position", "center " + donde + "px" );
-        }
-        $('.oculto').each(function(){
-            if(scrollTop + winh > ($(this).offset().top + $(this).height()/1.1) ){ // 
-                $(this).removeClass('oculto');
+        $('.parallax').each(function(){
+            obj = $(this);
+            mitop = obj.offset().top;
+            mialto = obj.height();
+            if ( ( winh + scrollTop ) > mitop && ( scrollTop - mialto ) < mitop ) {
+                aa = winh + mialto;
+                if ( aa == 0 ) aa = 1;
+                donde = ( mitop - scrollTop - winh ) * mialto / aa;
+                donde= donde * 0.3;
+                obj.css( "background-position", "center " + donde + "px" );
             }
         })
     });
@@ -221,6 +223,7 @@ $( document ).ready( function () {
 })
 
 function valida(elFRM){
+    $('.loading').addClass('activo');
     $.ajax({
         data: $(elFRM).serialize(),
         type: "POST",
@@ -234,6 +237,7 @@ function valida(elFRM){
                 alert('Something went wrong, for security the page will be reloaded');
                 location.reload();
             }
+            $('.loading').removeClass('activo');
         }
     });
     return false;

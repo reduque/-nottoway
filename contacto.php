@@ -31,7 +31,8 @@ if(!empty($_POST['token'])){
 
 
 
-		if($_SERVER['SERVER_NAME']<>"localhost") mail($email, $subject, $cuerpo, $headers);
+		//if($_SERVER['SERVER_NAME']<>"localhost") 
+			mail($email, $subject, $cuerpo, $headers);
 
 		$enviado='si';
 
